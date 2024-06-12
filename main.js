@@ -24,12 +24,12 @@ document.addEventListener("keydown", (e) => {
   if (e.key == "s") camera.position.y -= 1;
   if (e.key == "ArrowUp") camera.position.z -= 1;
   if (e.key == "ArrowDown") camera.position.z += 1;
-  if (e.key == 2) camera.rotation.x += 0.01;
-  if (e.key == 8) camera.rotation.x -= 0.01;
-  if (e.key == 4) camera.rotation.y -= 0.01;
-  if (e.key == 6) camera.rotation.y += 0.01;
-  if (e.key == "ArrowLeft") camera.rotation.z += 0.01;
-  if (e.key == "ArrowRight") camera.rotation.z -= 0.01;
+  if (e.key == 2) camera.rotation.x += 0.05;
+  if (e.key == 8) camera.rotation.x -= 0.05;
+  if (e.key == 4) camera.rotation.y -= 0.05;
+  if (e.key == 6) camera.rotation.y += 0.05;
+  if (e.key == "ArrowLeft") camera.rotation.z += 0.05;
+  if (e.key == "ArrowRight") camera.rotation.z -= 0.05;
 });
 
 var HEIGHT = window.innerHeight;
