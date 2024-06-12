@@ -58,7 +58,9 @@ model.push(cone);
 
 function animate() {
   requestAnimationFrame(animate);
-  modelupdate(model, (0, 0, -1), (0, 0, 0));
+  let pos = [0, 0, -0.1];
+  let angle = [0.1, 0, -0.1];
+  modelupdate(model, pos, angle);
   renderer.render(scene, camera);
 }
 
@@ -77,16 +79,14 @@ function onWindowResize() {
 //enter updation algorithm here to run at every time step
 
 function modelupdate(model, pos, angle) {
-  console.log(model, pos, angle)
-  for(let i=0;i<model.length;i++){
+  console.log(model, pos, angle);
+  for (let i = 0; i < model.length; i++) {
     // console.log(i)
-      model[i].position.x += 0;
-      model[i].position.y += 0;
-      model[i].position.z += -0.1;
-      // model[i].rotation.x += angle[0];
-      // model[i].rotation.y += angle[1];
-      // model[i].rotation.z += angle[2];
-      console.log(model[i].position)
+    model[i].position.x +=pos[0];
+    model[i].position.y +=pos[1];
+    model[i].position.z +=pos[2];
+    model[i].rotation.x +=angle[0];
+    model[i].rotation.y +=angle[1];
+    model[i].rotation.z +=angle[2];
   }
-
 }
