@@ -8,6 +8,9 @@ const camera = new THREE.PerspectiveCamera(
   1000
 );
 
+let force = [10, 10, 0]; // x,y,z
+let mass = 1000;
+
 // document.addEventListener("keypress",(e)=>{
 //     if(e.key == "a") camera.position.y += 1
 // })
@@ -34,6 +37,7 @@ var WIDTH = window.innerWidth;
 let aspectRatio = WIDTH / HEIGHT;
 var windowHalfX = WIDTH / 2;
 var windowHalfY = HEIGHT / 2;
+let model = [];
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -43,17 +47,19 @@ const geometryBody = new THREE.CylinderGeometry(2, 2, 20, 64, 12);
 const materialBody = new THREE.MeshBasicMaterial({ color: 0xffff00 });
 const cylinder = new THREE.Mesh(geometryBody, materialBody);
 scene.add(cylinder);
+model.push(cylinder);
 
 const geometryHead = new THREE.CylinderGeometry(0, 2, 5, 64, 12);
 const materialHead = new THREE.MeshBasicMaterial({ color: 0xffff00 });
 const cone = new THREE.Mesh(geometryHead, materialHead);
 cone.position.y = 12.5;
 scene.add(cone);
+model.push(cone);
 
 function animate() {
   requestAnimationFrame(animate);
+  modelupdate(model, (0, 0, -1), (0, 0, 0));
   renderer.render(scene, camera);
-  algo()
 }
 
 animate();
@@ -68,7 +74,19 @@ function onWindowResize() {
   renderer.setSize(WIDTH, HEIGHT);
 }
 
-function algo(){
-    cylinder.position.y += 0.01
-    cone.position.y += 0.01
+//enter updation algorithm here to run at every time step
+
+function modelupdate(model, pos, angle) {
+  console.log(model, pos, angle)
+  for(let i=0;i<model.length;i++){
+    // console.log(i)
+      model[i].position.x += 0;
+      model[i].position.y += 0;
+      model[i].position.z += -0.1;
+      // model[i].rotation.x += angle[0];
+      // model[i].rotation.y += angle[1];
+      // model[i].rotation.z += angle[2];
+      console.log(model[i].position)
+  }
+
 }
