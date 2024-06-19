@@ -16,20 +16,18 @@ let mass = 1000;
 //     if(e.key == "a") camera.position.y += 1
 // })
 document.addEventListener("keydown", (e) => {
-  if (e.key == "a") {
-    camera.position.x -= 1;
-  }
-  if (e.key == "d") camera.position.x += 1;
-  if (e.key == "w") camera.position.y += 1;
-  if (e.key == "s") camera.position.y -= 1;
-  if (e.key == "ArrowUp") camera.position.z -= 1;
-  if (e.key == "ArrowDown") camera.position.z += 1;
+  if (e.key == "a") camera.position.x += 1;
+  if (e.key == "d") camera.position.x -= 1;
+  if (e.key == "w") camera.position.y -= 1;
+  if (e.key == "s") camera.position.y += 1;
+  if (e.key == "ArrowUp") camera.position.z -= 5;
+  if (e.key == "ArrowDown") camera.position.z += 5;
   if (e.key == 2) camera.rotation.x += 0.05;
   if (e.key == 8) camera.rotation.x -= 0.05;
   if (e.key == 4) camera.rotation.y -= 0.05;
   if (e.key == 6) camera.rotation.y += 0.05;
-  if (e.key == "ArrowLeft") camera.rotation.z += 0.05;
-  if (e.key == "ArrowRight") camera.rotation.z -= 0.05;
+  if (e.key == "ArrowLeft") camera.rotation.z -= 0.05;
+  if (e.key == "ArrowRight") camera.rotation.z += 0.05;
 });
 
 var HEIGHT = window.innerHeight;
@@ -126,7 +124,7 @@ function modelupdate(model, pos, angle) {
     // console.log(i)
     model[i].position.x += 0;
     model[i].position.y += 0;
-    model[i].position.z += -0.1;
+    model[i].position.z = -21;
     // model[i].rotation.x += angle[0];
     // model[i].rotation.y += angle[1];
     // model[i].rotation.z += angle[2];
