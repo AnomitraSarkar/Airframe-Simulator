@@ -62,24 +62,43 @@ scene.add(light);
 
 const gui = new GUI();
 
-const geometryFolder = gui.addFolder("Head Geometry");
-geometryFolder.open();
-const rotationFolder = geometryFolder.addFolder("Rotation");
-rotationFolder.add(cone.rotation, "x", 0, Math.PI).name("Rotate X Axis");
-rotationFolder.add(cone.rotation, "y", 0, Math.PI).name("Rotate Y Axis");
-rotationFolder.add(cone.rotation, "z", 0, Math.PI).name("Rotate Z Axis");
-const scaleFolder = geometryFolder.addFolder("Scale");
-scaleFolder.add(cone.scale, "x", 0, 2).name("Scale X Axis");
-scaleFolder.add(cone.scale, "y", 0, 2).name("Scale Y Axis");
-scaleFolder.add(cone.scale, "z", 0, 2).name("Scale Z Axis");
-scaleFolder.open();
+//Head
+const geometryFolderH = gui.addFolder("Head Geometry");
+geometryFolderH.open();
+const rotationFolderH = geometryFolderH.addFolder("Rotation");
+rotationFolderH.add(cone.rotation, "x", 0, Math.PI).name("Rotate X Axis");
+rotationFolderH.add(cone.rotation, "y", 0, Math.PI).name("Rotate Y Axis");
+rotationFolderH.add(cone.rotation, "z", 0, Math.PI).name("Rotate Z Axis");
+const scaleFolderH = geometryFolderH.addFolder("Scale");
+scaleFolderH.add(cone.scale, "x", 0, 2).name("Scale X Axis");
+scaleFolderH.add(cone.scale, "y", 0, 2).name("Scale Y Axis");
+scaleFolderH.add(cone.scale, "z", 0, 2).name("Scale Z Axis");
+scaleFolderH.open();
 
-const materialFolder = gui.addFolder("Head Material");
-const materialParams = { coneColor: cone.material.color.getHex() };
-materialFolder.add(cone.material, "wireframe");
-materialFolder
-  .addColor(materialParams, "coneColor")
-  .onChange((value) => cone.material.color.set(value));
+const materialFolderH = gui.addFolder("Head Material");
+const materialParamsH={coneColor:cone.material.color.getHex()};
+materialFolderH.add(cone.material, 'wireframe');
+materialFolderH.addColor(materialParamsH,'coneColor')
+   .onChange((value) =>cone.material.color.set(value));
+
+//Body
+const geometryFolderB = gui.addFolder("Body Geometry");
+geometryFolderB.open();
+const rotationFolderB = geometryFolderB.addFolder("Rotation");
+rotationFolderB.add(cylinder.rotation, "x", 0, Math.PI).name("Rotate X Axis");
+rotationFolderB.add(cylinder.rotation, "y", 0, Math.PI).name("Rotate Y Axis");
+rotationFolderB.add(cylinder.rotation, "z", 0, Math.PI).name("Rotate Z Axis");
+const scaleFolderB = geometryFolderB.addFolder("Scale");
+scaleFolderB.add(cylinder.scale, "x", 0, 2).name("Scale X Axis");
+scaleFolderB.add(cylinder.scale, "y", 0, 2).name("Scale Y Axis");
+scaleFolderB.add(cylinder.scale, "z", 0, 2).name("Scale Z Axis");
+scaleFolderB.open();
+
+const materialFolderB = gui.addFolder("Body Material");
+const materialParamsB={cylinderColor:cone.material.color.getHex()};
+materialFolderB.add(cylinder.material, 'wireframe');
+materialFolderB.addColor(materialParamsB,'cylinderColor')
+   .onChange((value) =>cylinder.material.color.set(value));
 
 function animate() {
   requestAnimationFrame(animate);
