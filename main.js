@@ -63,7 +63,7 @@ scene.add(light);
 
 const gui = new GUI();
 
-const geometryFolder = gui.addFolder("Mesh Geometry");
+const geometryFolder = gui.addFolder("Head Geometry");
 geometryFolder.open();
 const rotationFolder = geometryFolder.addFolder("Rotation");
 rotationFolder.add(cone.rotation, "x", 0, Math.PI).name("Rotate X Axis");
@@ -75,7 +75,7 @@ scaleFolder.add(cone.scale, "y", 0, 2).name("Scale Y Axis");
 scaleFolder.add(cone.scale, "z", 0, 2).name("Scale Z Axis");
 scaleFolder.open();
 
-const materialFolder = gui.addFolder("Mesh Material");
+const materialFolder = gui.addFolder("Head Material");
 const materialParams={coneColor:cone.material.color.getHex()};
 materialFolder.add(cone.material, 'wireframe');
 materialFolder.addColor(materialParams,'coneColor')
