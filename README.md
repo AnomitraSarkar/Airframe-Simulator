@@ -11,19 +11,19 @@ Controls for GUI:
 
 KEYS: <for camera control>
 
-A -> -ve x position <br/>
-S -> -ve y position
-D -> +ve x position
-W -> +ve y position
-(ArrowUP) -> -ve z direction
-(ArrowDOWN)-> +ve direction
+A -> -ve x position<br/>
+S -> -ve y position<br/>
+D -> +ve x position<br/>
+W -> +ve y position<br/>
+(ArrowUP) -> -ve z direction<br/>
+(ArrowDOWN)-> +ve direction<br/>
 
-2 -> anticlock x
-4 -> clockwise y
-8 -> clockwise x
-6 -> anticlock y
-(ArrowRIGHT)-> clockwise z
-(ArrowLEFT) -> anticlock z
+2 -> anticlock x<br/>
+4 -> clockwise y<br/>
+8 -> clockwise x<br/>
+6 -> anticlock y<br/>
+(ArrowRIGHT)-> clockwise z<br/>
+(ArrowLEFT) -> anticlock z<br/>
 
 ---
 
