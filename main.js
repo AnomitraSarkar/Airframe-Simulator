@@ -18,7 +18,6 @@ let mass = 1000;
 document.addEventListener("keydown", (e) => {
   if (e.key == "a") {
     camera.position.x -= 1;
-    console.log("-x");
   }
   if (e.key == "d") camera.position.x += 1;
   if (e.key == "w") camera.position.y += 1;
@@ -76,10 +75,11 @@ scaleFolder.add(cone.scale, "z", 0, 2).name("Scale Z Axis");
 scaleFolder.open();
 
 const materialFolder = gui.addFolder("Head Material");
-const materialParams={coneColor:cone.material.color.getHex()};
-materialFolder.add(cone.material, 'wireframe');
-materialFolder.addColor(materialParams,'coneColor')
-   .onChange((value) =>cone.material.color.set(value));
+const materialParams = { coneColor: cone.material.color.getHex() };
+materialFolder.add(cone.material, "wireframe");
+materialFolder
+  .addColor(materialParams, "coneColor")
+  .onChange((value) => cone.material.color.set(value));
 
 function animate() {
   requestAnimationFrame(animate);
