@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import {GUI} from 'dat.gui';
+import {GUI} from 'three/addons/libs/lil-gui.module.min.js';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -78,7 +78,7 @@ const materialFolder=gui.addFolder('Mesh Material');
 const materialParams={boxMeshColor:boxMesh.material.color.getHex()};
 materialFolder.add(boxMsh.material, 'wireframe');
 materialFolder.addColor(materialParams,'boxMeshColor')
-   .onChange((value) => boxMeshColor:boxMesh.material.color.set(value));
+   .onChange((value) => boxMeshColor, boxMesh.material.color.set(value));
 
 
 
