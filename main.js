@@ -50,7 +50,7 @@ scene.add(cylinder);
 model.push(cylinder);
 
 const geometryHead = new THREE.CylinderGeometry(0, 2, 5, 64, 12);
-const materialHead = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+const materialHead = new THREE.MeshBasicMaterial({ color: 0xfe6298 });
 const cone = new THREE.Mesh(geometryHead, materialHead);
 cone.position.y = 12.5;
 scene.add(cone);
