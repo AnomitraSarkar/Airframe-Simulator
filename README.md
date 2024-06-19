@@ -11,7 +11,7 @@ Controls for GUI:
 
 KEYS: <for camera control>
 
-A -> -ve x position
+A -> -ve x position <br/>
 S -> -ve y position
 D -> +ve x position
 W -> +ve y position
