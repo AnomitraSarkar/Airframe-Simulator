@@ -27,9 +27,9 @@ W -> +ve y position<br/>
 
 ---
 
-X Axis is horizontal to plane
-Y Axis is vertical to plane
-Z Axis is outwards and inwards
-rest follows the cartesian coordinate system in 3d
+X Axis is horizontal to plane<br/>
+Y Axis is vertical to plane<br/>
+Z Axis is outwards and inwards<br/>
+rest follows the cartesian coordinate system in 3d<br/>
 
 ---
