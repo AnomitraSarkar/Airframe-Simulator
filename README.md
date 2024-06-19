@@ -2,14 +2,14 @@
 
 Using Javascript and three js in a vanilla fashion to create a Airframe Simulator for simulate rocket motion and fine tune pid constants
 
-## Controls for GUI:
+### Controls for GUI:
 
 - Rotation in X,Y,Z axis
 - Scale in X,Y,Z axis
 - Wireframe
 - Color set
 
-## KEYS: <for camera control>
+### KEYS: <for camera control>
 
 A -> -ve x position<br/>
 S -> -ve y position<br/>
