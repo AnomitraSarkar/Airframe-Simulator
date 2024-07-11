@@ -1,7 +1,9 @@
 TODO
 
-> add directional lighting and gui correspondence
-> make readme regarding control operation
-> setting origin of rotation indexing
-> create a combined blender or cad model to replace model and reduce redundancy
-> create normalize map on model
+> gui correspondence, rotation and position (suhani)
+> attach normalize model map as texture to model (suhani)
+> clean up unneccary code
+> orientation control on the model : Yaw , Pitch , Roll converted to euler x,y,z (sarkar)
+> add a button to reset the model to its original position (sarkar)
+
+> convert to entire adder and map benath using gmaps api(later on)
