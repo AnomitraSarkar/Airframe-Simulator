@@ -4,11 +4,16 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, 
-  window.innerWidth / window.innerHeight, 0.1,1000);
+const camera = new THREE.PerspectiveCamera(
+  75,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000
+);
 let force = [10, 10, 0]; // x,y,z
 let mass = 1000;
 
+const gui = new GUI();
 // document.addEventListener("keypress",(e)=>{
 //     if(e.key == "a") camera.position.y += 1
 // })
@@ -38,15 +43,37 @@ let model = [];
 // const dracoLoader = new DRACOLoader();
 // dracoLoader.setDecoderPath( '/examples/jsm/libs/draco/' );
 // loader.setDRACOLoader( dracoLoader );
+let modeller;
 
 const loader = new GLTFLoader();
-loader.load("Rocket.gltf", function (gltf) {
-  scene.add(gltf.scene);
-  gltf.animations; // Array<THREE.AnimationClip>
-  gltf.scene; // THREE.Group
-  gltf.scenes; // Array<THREE.Group>
-  gltf.cameras; // Array<THREE.Camera>
-  gltf.asset; // Object
+loader.load(
+  "Rocket.gltf",
+  function (gltf) {
+    modeller = gltf.scene;
+    scene.add(gltf.scene);
+
+    const posFolder = gui.addFolder("Position");
+    posFolder.add(gltf.scene.position, "x", -10, 10).name("X Axis");
+    posFolder.add(gltf.scene.position, "y", -10, 10).name("Y Axis");
+    posFolder.add(gltf.scene.position, "z", -10, 10).name("Z Axis");
+    posFolder.open();
+
+    const rotationFolder = gui.addFolder("Rotation");
+    rotationFolder
+      .add(gltf.scene.rotation, "x", -Math.PI, Math.PI)
+      .name("Rotate X Axis");
+    rotationFolder
+      .add(gltf.scene.rotation, "y", -Math.PI, Math.PI)
+      .name("Rotate Y Axis");
+    rotationFolder
+      .add(gltf.scene.rotation, "z", -Math.PI, Math.PI)
+      .name("Rotate Z Axis");
+
+    gltf.animations; // Array<THREE.AnimationClip>
+    gltf.scene; // THREE.Group
+    gltf.scenes; // Array<THREE.Group>
+    gltf.cameras; // Array<THREE.Camera>
+    gltf.asset; // Object
   },
   // called while loading is progressing
   function (xhr) {
@@ -59,13 +86,16 @@ loader.load("Rocket.gltf", function (gltf) {
 );
 
 const Tex = new THREE.TextureLoader();
-Tex.load('Texture.jpeg', function ( texture ) {
-		const material = new THREE.MeshBasicMaterial( {map: texture } );
-	},
-	undefined,
-	function ( err ) {
-		console.error( 'An error happened.' );
-	});
+Tex.load(
+  "Texture.jpeg",
+  function (texture) {
+    const material = new THREE.MeshBasicMaterial({ map: texture });
+  },
+  undefined,
+  function (err) {
+    console.error("An error happened.");
+  }
+);
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -78,18 +108,6 @@ controls.update();
 const light = new THREE.DirectionalLight();
 light.position.set(0.2, 1, 1);
 scene.add(light);
-
- const gui = new GUI();
-
- const rotationFolder = gui.addFolder("Rotation");
- rotationFolder.add(scene.rotation, "x", -Math.PI, Math.PI).name("Rotate X Axis");
- rotationFolder.add(scene.rotation, "y", -Math.PI, Math.PI).name("Rotate Y Axis");
- rotationFolder.add(scene.rotation, "z", -Math.PI, Math.PI).name("Rotate Z Axis");
- const posFolder = gui.addFolder("Position");
- posFolder.add(scene.position, "x", -10, 10).name("X Axis");
- posFolder.add(scene.position, "y", -10, 10).name("Y Axis");
- posFolder.add(scene.position, "z", -10, 10).name("Z Axis");
- posFolder.open();
 
 function animate() {
   requestAnimationFrame(animate);
