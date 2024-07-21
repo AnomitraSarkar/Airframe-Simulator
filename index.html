@@ -18,6 +18,151 @@
     </script>
   </head>
   <body>
-    <script type="module" src="main.js"></script>
+  <script type="module"> 
+      import * as THREE from "three";
+      import { GUI } from "three/addons/libs/lil-gui.module.min.js";
+      import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+      import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+      
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+      );
+      let force = [10, 10, 0]; // x,y,z
+      let mass = 1000;
+      
+      const gui = new GUI();
+      // document.addEventListener("keypress",(e)=>{
+      //     if(e.key == "a") camera.position.y += 1
+      // })
+      document.addEventListener("keydown", (e) => {
+        if (e.key == "a") camera.position.x += 1;
+        if (e.key == "d") camera.position.x -= 1;
+        if (e.key == "w") camera.position.y -= 1;
+        if (e.key == "s") camera.position.y += 1;
+        if (e.key == "ArrowUp") camera.position.z -= 5;
+        if (e.key == "ArrowDown") camera.position.z += 5;
+        if (e.key == 2) camera.rotation.x += 0.05;
+        if (e.key == 8) camera.rotation.x -= 0.05;
+        if (e.key == 4) camera.rotation.y -= 0.05;
+        if (e.key == 6) camera.rotation.y += 0.05;
+        if (e.key == "ArrowLeft") camera.rotation.z -= 0.05;
+        if (e.key == "ArrowRight") camera.rotation.z += 0.05;
+      });
+      
+      var HEIGHT = window.innerHeight;
+      var WIDTH = window.innerWidth;
+      let aspectRatio = WIDTH / HEIGHT;
+      var windowHalfX = WIDTH / 2;
+      var windowHalfY = HEIGHT / 2;
+      let model = [];
+      
+      // // Optional: Provide a DRACOLoader instance to decode compressed mesh data
+      // const dracoLoader = new DRACOLoader();
+      // dracoLoader.setDecoderPath( '/examples/jsm/libs/draco/' );
+      // loader.setDRACOLoader( dracoLoader );
+      let modeller;
+      
+      const loader = new GLTFLoader();
+      loader.load(
+        "Rocket.gltf",
+        function (gltf) {
+          modeller = gltf.scene;
+          scene.add(gltf.scene);
+      
+          const posFolder = gui.addFolder("Position");
+          posFolder.add(gltf.scene.position, "x", -10, 10).name("X Axis");
+          posFolder.add(gltf.scene.position, "y", -10, 10).name("Y Axis");
+          posFolder.add(gltf.scene.position, "z", -10, 10).name("Z Axis");
+          posFolder.open();
+      
+          const rotationFolder = gui.addFolder("Rotation");
+          rotationFolder
+            .add(gltf.scene.rotation, "x", -Math.PI, Math.PI)
+            .name("Rotate X Axis");
+          rotationFolder
+            .add(gltf.scene.rotation, "y", -Math.PI, Math.PI)
+            .name("Rotate Y Axis");
+          rotationFolder
+            .add(gltf.scene.rotation, "z", -Math.PI, Math.PI)
+            .name("Rotate Z Axis");
+      
+          gltf.animations; // Array<THREE.AnimationClip>
+          gltf.scene; // THREE.Group
+          gltf.scenes; // Array<THREE.Group>
+          gltf.cameras; // Array<THREE.Camera>
+          gltf.asset; // Object
+        },
+        // called while loading is progressing
+        function (xhr) {
+          console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+        },
+        // called when loading has errors
+        function (error) {
+          console.log("An error happened");
+        }
+      );
+      
+      const Tex = new THREE.TextureLoader();
+      Tex.load(
+        "Texture.jpeg",
+        function (texture) {
+          const material = new THREE.MeshBasicMaterial({ map: texture });
+        },
+        undefined,
+        function (err) {
+          console.error("An error happened.");
+        }
+      );
+      
+      const renderer = new THREE.WebGLRenderer();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+      const controls = new OrbitControls(camera, renderer.domElement);
+      camera.rotation.set(0.3, 1.7, -0.3);
+      camera.position.set(21, -4, -10);
+      controls.update();
+      
+      const light = new THREE.DirectionalLight();
+      light.position.set(0.2, 1, 1);
+      scene.add(light);
+      
+      function animate() {
+        requestAnimationFrame(animate);
+        modelupdate(model, (0, 0, -1), (0, 0, 0));
+        controls.update();
+        renderer.render(scene, camera);
+      }
+      animate();
+      
+      function onWindowResize() {
+        var WIDTH = window.innerWidth;
+        HEIGHT = window.innerHeight;
+      
+        aspectRatio = WIDTH / HEIGHT;
+        camera.aspect = aspectRatio;
+        camera.updateProjectionMatrix();
+        renderer.setSize(WIDTH, HEIGHT);
+      }
+      
+      //enter updation algorithm here to run at every time step
+      function modelupdate(model, pos, angle) {
+        // console.log(model, pos, angle);
+        for (let i = 0; i < model.length; i++) {
+          // console.log(i)
+          model[i].position.x += 0;
+          model[i].position.y += 0;
+          model[i].position.z = -21;
+          // model[i].rotation.x += angle[0];
+          // model[i].rotation.y += angle[1];
+          // model[i].rotation.z += angle[2];
+          // console.log(model[i].position);
+        }
+      }
+  </script>
+    
   </body>
 </html>
